@@ -48,4 +48,4 @@ A web-based application that predicts the most suitable fertilizer based on soil
 
 ## Contributing
 
-Feel free to submit issues and enhancement requests! 
+Feel free to submit issues and enhancement requests!
