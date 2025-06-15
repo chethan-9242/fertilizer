@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Fertilizer Prediction System
 
 A web-based application that predicts the most suitable fertilizer based on soil parameters using HTML, CSS, JavaScript, and Three.js for animations.
@@ -49,3 +50,6 @@ A web-based application that predicts the most suitable fertilizer based on soil
 ## Contributing
 
 Feel free to submit issues and enhancement requests! 
+=======
+# AI-project
+>>>>>>> b7e4743 (Create README.md)
