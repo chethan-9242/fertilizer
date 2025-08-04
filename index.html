@@ -4,160 +4,363 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Advanced Crop Prediction System using machine learning to recommend the best crops based on soil parameters and environmental conditions.">
-    <title>Crop Prediction System</title>
+    <title>🌱 Smart Crop Predictor</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Crop Prediction System</h1>
-        </header>
-
-        <main>
-            <section class="prediction-form">
-                <h2>Enter Soil Parameters</h2>
-                <form id="fertilizer-form">
-                    <div class="form-group">
-                        <label for="temperature">Temperature (°C)</label>
-                        <input type="number" id="temperature" required step="0.1">
-                    </div>
-                    <div class="form-group">
-                        <label for="humidity">Humidity (%)</label>
-                        <input type="number" id="humidity" required step="0.1">
-                    </div>
-                    <div class="form-group">
-                        <label for="ph">Soil pH</label>
-                        <input type="number" id="ph" required step="0.1">
-                    </div>
-                    <div class="form-group">
-                        <label for="rainfall">Rainfall (mm)</label>
-                        <input type="number" id="rainfall" required step="0.1">
-                    </div>
-                    <div class="form-group">
-                        <label for="nitrogen">Nitrogen Content</label>
-                        <input type="number" id="nitrogen" required step="0.1">
-                    </div>
-                    <div class="form-group">
-                        <label for="phosphorus">Phosphorus Content</label>
-                        <input type="number" id="phosphorus" required step="0.1">
-                    </div>
-                    <div class="form-group">
-                        <label for="potassium">Potassium Content</label>
-                        <input type="number" id="potassium" required step="0.1">
-                    </div>
-                    <button type="submit">Predict Crop</button>
-                </form>
-            </section>
-
-            <section class="result-section">
-                <h2>Prediction Result</h2>
-                <div id="prediction-result"></div>
-            </section>
-
-            <section class="dataset-info">
-                <h2>Dataset Information</h2>
-                <div class="dataset-stats">
-                    <h3>Overview</h3>
-                    <ul>
-                        <li>Total Records: 2200</li>
-                        <li>Number of Crops: 22</li>
-                        <li>Samples per Crop: 100</li>
-                    </ul>
-                </div>
-                <div class="crop-types">
-                    <h3>Available Crops</h3>
-                    <div class="crop-categories">
-                        <div class="category">
-                            <h4>Grains</h4>
-                            <ul>
-                                <li>Rice</li>
-                                <li>Maize</li>
-                            </ul>
-                        </div>
-                        <div class="category">
-                            <h4>Pulses</h4>
-                            <ul>
-                                <li>Chickpea</li>
-                                <li>Kidneybeans</li>
-                                <li>Pigeonpeas</li>
-                                <li>Mothbeans</li>
-                                <li>Mungbean</li>
-                                <li>Blackgram</li>
-                                <li>Lentil</li>
-                            </ul>
-                        </div>
-                        <div class="category">
-                            <h4>Fruits</h4>
-                            <ul>
-                                <li>Pomegranate</li>
-                                <li>Banana</li>
-                                <li>Mango</li>
-                                <li>Grapes</li>
-                                <li>Watermelon</li>
-                                <li>Muskmelon</li>
-                                <li>Apple</li>
-                                <li>Orange</li>
-                                <li>Papaya</li>
-                            </ul>
-                        </div>
-                        <div class="category">
-                            <h4>Others</h4>
-                            <ul>
-                                <li>Coconut</li>
-                                <li>Cotton</li>
-                                <li>Jute</li>
-                                <li>Coffee</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="parameter-ranges">
-                    <h3>Parameter Ranges</h3>
-                    <table>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Range</th>
-                        </tr>
-                        <tr>
-                            <td>Nitrogen (N)</td>
-                            <td>0-140 ppm</td>
-                        </tr>
-                        <tr>
-                            <td>Phosphorus (P)</td>
-                            <td>5-145 ppm</td>
-                        </tr>
-                        <tr>
-                            <td>Potassium (K)</td>
-                            <td>5-205 ppm</td>
-                        </tr>
-                        <tr>
-                            <td>Temperature</td>
-                            <td>8.83-43.68°C</td>
-                        </tr>
-                        <tr>
-                            <td>Humidity</td>
-                            <td>14.26-99.98%</td>
-                        </tr>
-                        <tr>
-                            <td>pH</td>
-                            <td>3.50-9.94</td>
-                        </tr>
-                        <tr>
-                            <td>Rainfall</td>
-                            <td>20.21-298.56 mm</td>
-                        </tr>
-                    </table>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>&copy; 2024 Crop Prediction System. All rights reserved.</p>
-        </footer>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
     </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-seedling"></i>
+                <span>SmartCrop</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#predict" class="nav-link">Predict</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="gradient-text">Smart Crop</span>
+                        <br>Prediction System
+                    </h1>
+                    <p class="hero-subtitle">
+                        Harness the power of AI to discover the perfect crop for your soil conditions. 
+                        Get instant recommendations based on scientific data and machine learning.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>22 Crops</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-database"></i>
+                            <span>2200+ Samples</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-brain"></i>
+                            <span>AI Powered</span>
+                        </div>
+                    </div>
+                    <a href="#predict" class="cta-button">
+                        <span>Start Predicting</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Smart Analysis</h3>
+                        <p>Advanced ML algorithms analyze your soil data</p>
+                    </div>
+                    <div class="floating-card">
+                        <div class="card-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Instant Results</h3>
+                        <p>Get crop recommendations in seconds</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prediction Section -->
+        <section id="predict" class="prediction-section">
+            <div class="section-header">
+                <h2>Crop Prediction</h2>
+                <p>Enter your soil parameters to get the best crop recommendation</p>
+            </div>
+            
+            <div class="prediction-container">
+                <div class="form-container">
+                    <div class="form-header">
+                        <i class="fas fa-microscope"></i>
+                        <h3>Soil Parameters</h3>
+                    </div>
+                    
+                    <form id="fertilizer-form" class="prediction-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="temperature">
+                                    <i class="fas fa-thermometer-half"></i>
+                                    Temperature (°C)
+                                </label>
+                                <input type="number" id="temperature" required step="0.1" placeholder="e.g., 25.5">
+                                <div class="input-border"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="humidity">
+                                    <i class="fas fa-tint"></i>
+                                    Humidity (%)
+                                </label>
+                                <input type="number" id="humidity" required step="0.1" placeholder="e.g., 75.0">
+                                <div class="input-border"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ph">
+                                    <i class="fas fa-flask"></i>
+                                    Soil pH
+                                </label>
+                                <input type="number" id="ph" required step="0.1" placeholder="e.g., 6.5">
+                                <div class="input-border"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="rainfall">
+                                    <i class="fas fa-cloud-rain"></i>
+                                    Rainfall (mm)
+                                </label>
+                                <input type="number" id="rainfall" required step="0.1" placeholder="e.g., 100.0">
+                                <div class="input-border"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="nitrogen">
+                                    <i class="fas fa-atom"></i>
+                                    Nitrogen (N)
+                                </label>
+                                <input type="number" id="nitrogen" required step="0.1" placeholder="e.g., 50.0">
+                                <div class="input-border"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phosphorus">
+                                    <i class="fas fa-fire"></i>
+                                    Phosphorus (P)
+                                </label>
+                                <input type="number" id="phosphorus" required step="0.1" placeholder="e.g., 50.0">
+                                <div class="input-border"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="potassium">
+                                    <i class="fas fa-bolt"></i>
+                                    Potassium (K)
+                                </label>
+                                <input type="number" id="potassium" required step="0.1" placeholder="e.g., 30.0">
+                                <div class="input-border"></div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="predict-button">
+                            <span>Predict Crop</span>
+                            <i class="fas fa-magic"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="result-container">
+                    <div class="result-header">
+                        <i class="fas fa-chart-pie"></i>
+                        <h3>Prediction Result</h3>
+                    </div>
+                    <div id="prediction-result" class="result-content">
+                        <div class="placeholder-result">
+                            <i class="fas fa-seedling"></i>
+                            <p>Enter soil parameters and click "Predict Crop" to get your recommendation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dataset Info Section -->
+        <section id="about" class="dataset-section">
+            <div class="section-header">
+                <h2>Dataset Information</h2>
+                <p>Comprehensive crop data with scientific accuracy</p>
+            </div>
+            
+            <div class="dataset-grid">
+                <div class="dataset-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Overview</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="stat-grid">
+                            <div class="stat">
+                                <span class="stat-number">2200</span>
+                                <span class="stat-label">Total Records</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">22</span>
+                                <span class="stat-label">Crop Types</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">100</span>
+                                <span class="stat-label">Samples per Crop</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dataset-card">
+                    <div class="card-header">
+                        <i class="fas fa-seedling"></i>
+                        <h3>Available Crops</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="crop-categories">
+                            <div class="category">
+                                <h4><i class="fas fa-wheat-awn"></i> Grains</h4>
+                                <ul>
+                                    <li>Rice</li>
+                                    <li>Maize</li>
+                                </ul>
+                            </div>
+                            <div class="category">
+                                <h4><i class="fas fa-seedling"></i> Pulses</h4>
+                                <ul>
+                                    <li>Chickpea</li>
+                                    <li>Kidneybeans</li>
+                                    <li>Pigeonpeas</li>
+                                    <li>Mothbeans</li>
+                                    <li>Mungbean</li>
+                                    <li>Blackgram</li>
+                                    <li>Lentil</li>
+                                </ul>
+                            </div>
+                            <div class="category">
+                                <h4><i class="fas fa-apple-alt"></i> Fruits</h4>
+                                <ul>
+                                    <li>Pomegranate</li>
+                                    <li>Banana</li>
+                                    <li>Mango</li>
+                                    <li>Grapes</li>
+                                    <li>Watermelon</li>
+                                    <li>Muskmelon</li>
+                                    <li>Apple</li>
+                                    <li>Orange</li>
+                                    <li>Papaya</li>
+                                </ul>
+                            </div>
+                            <div class="category">
+                                <h4><i class="fas fa-tree"></i> Others</h4>
+                                <ul>
+                                    <li>Coconut</li>
+                                    <li>Cotton</li>
+                                    <li>Jute</li>
+                                    <li>Coffee</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dataset-card">
+                    <div class="card-header">
+                        <i class="fas fa-sliders-h"></i>
+                        <h3>Parameter Ranges</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="parameter-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Range</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><i class="fas fa-atom"></i> Nitrogen (N)</td>
+                                        <td>0-140 ppm</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-fire"></i> Phosphorus (P)</td>
+                                        <td>5-145 ppm</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-bolt"></i> Potassium (K)</td>
+                                        <td>5-205 ppm</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-thermometer-half"></i> Temperature</td>
+                                        <td>8.83-43.68°C</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-tint"></i> Humidity</td>
+                                        <td>14.26-99.98%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-flask"></i> pH</td>
+                                        <td>3.50-9.94</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-cloud-rain"></i> Rainfall</td>
+                                        <td>20.21-298.56 mm</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <i class="fas fa-seedling"></i>
+                    <span>SmartCrop</span>
+                </div>
+                <p>Advanced crop prediction powered by machine learning</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#predict">Predict</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Technology</h4>
+                <ul>
+                    <li>Machine Learning</li>
+                    <li>Flask API</li>
+                    <li>Modern Web Design</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SmartCrop Prediction System. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html> 

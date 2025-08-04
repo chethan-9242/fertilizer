@@ -1,7 +1,8 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import joblib
 import numpy as np
+import os
 
 # Load the trained model and scaler
 model = joblib.load('fertilizer_model.joblib')
@@ -12,6 +13,15 @@ FEATURES = ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
+
+# Serve static files (HTML, CSS, JS)
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
+
+@app.route('/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('.', filename)
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -29,4 +39,10 @@ def predict():
     return jsonify({'prediction': prediction[0]})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    print("🌱 SmartCrop Prediction System")
+    print("=" * 40)
+    print("🚀 Starting server on http://localhost:5000")
+    print("📱 Access your website at: http://localhost:5000")
+    print("🔧 API endpoint: http://localhost:5000/predict")
+    print("=" * 40)
+    app.run(debug=True, host='0.0.0.0', port=5000)
