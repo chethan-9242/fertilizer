@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartCrop Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <main class="container">
+    <header class="hero">
+      <div class="glow-orb"></div>
+      <h1>SmartCrop Predictor</h1>
+      <p>Predict the best fertilizer blend from your field metrics.</p>
+    </header>
+
+    <section class="card">
+      <form id="predict-form" novalidate>
+        <div class="grid">
+          <label>
+            <span>N (Nitrogen)</span>
+            <input type="number" step="any" name="N" placeholder="e.g., 90" required />
+          </label>
+          <label>
+            <span>P (Phosphorus)</span>
+            <input type="number" step="any" name="P" placeholder="e.g., 42" required />
+          </label>
+          <label>
+            <span>K (Potassium)</span>
+            <input type="number" step="any" name="K" placeholder="e.g., 37" required />
+          </label>
+          <label>
+            <span>Temperature (°C)</span>
+            <input type="number" step="any" name="temperature" placeholder="e.g., 26.5" required />
+          </label>
+          <label>
+            <span>Humidity (%)</span>
+            <input type="number" step="any" name="humidity" placeholder="e.g., 73" required />
+          </label>
+          <label>
+            <span>Soil pH</span>
+            <input type="number" step="any" min="0" max="14" name="ph" placeholder="e.g., 6.5" required />
+          </label>
+          <label class="wide">
+            <span>Rainfall (mm)</span>
+            <input type="number" step="any" name="rainfall" placeholder="e.g., 120" required />
+          </label>
+        </div>
+
+        <div class="actions">
+          <button class="btn" type="submit">
+            <span class="btn-glow"></span>
+            Predict
+          </button>
+          <button class="btn ghost" type="reset">Clear</button>
+        </div>
+
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <section id="result" class="result hidden">
+      <div class="result-inner">
+        <h2>Recommended Fertilizer</h2>
+        <div class="prediction" id="prediction-value">—</div>
+        <button class="btn small" id="try-again">Try another input</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Powered by your local model API</span>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html> 
